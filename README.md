@@ -3,11 +3,12 @@
 
 # Question 1 (Naked Twins)
 Q: How do we use constraint propagation to solve the naked twins problem?  
-A: *Student should provide answer here*
+A: we firstly find two grids with the same two possible answers within the same units. Since these two grids need an answer, and they only have two choice, we then speculate that each of these two digits should be located at each of these two grids.
+   Since tow digits have been assigned, next step we can eliminate the two digits from the other grids belongs to the same units. We use constraint propagation to reduce possible answers of the other grids in the same units.
 
 # Question 2 (Diagonal Sudoku)
 Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
-A: *Student should provide answer here*
+A: Since each digits from 0 to 9 can only appear once on each diagonal, we use this rule as a constraint to reduce possible answers.
 
 ### Install
 
