@@ -12,6 +12,7 @@ row_units = [cross(r, cols) for r in rows]
 column_units = [cross(rows, c) for c in cols]
 square_units = [cross(rs, cs) for rs in ('ABC','DEF','GHI') for cs in ('123','456','789')]
 
+# put the diagonal boxes into two diagonal list
 diag1 = []
 for x in range(len(rows)):
     diag1.append(rows[x] + cols[x])
@@ -19,7 +20,8 @@ for x in range(len(rows)):
 diag2 = []
 for x in range(len(rows)):
     diag2.append(rows[x] + cols[len(rows)-x-1])
-    
+
+# add the two diagonal units into unitlist    
 diagonal_units = []
 diagonal_units.append(diag1)
 diagonal_units.append(diag2)
@@ -42,6 +44,7 @@ def assign_value(values, box, value):
         assignments.append(values.copy())
     return values
 
+# if there are two boxes with the same two digits in the same unit, eliminate the two digits in the other boxes of this unit.
 def naked_twins(values):
     temp=[]
     for x in range(len(unitlist)):
@@ -106,6 +109,7 @@ def display(values):
         if r in 'CF': print(line)
     return
 
+# if there is a box only has one digit, then eliminate the same digit in all peers of this box. 
 def eliminate(values):
     solved_values = [box for box in values.keys() if len(values[box]) == 1]
     for box in solved_values:
@@ -114,6 +118,7 @@ def eliminate(values):
             values[peer] = values[peer].replace(digit,'')
     return values
 
+# if a digit only appears once in a unit, then eliminate the same digit in all boxes of this unit. 
 def only_choice(values):
     for unit in unitlist:
         for digit in '123456789':
@@ -122,6 +127,7 @@ def only_choice(values):
                 values[dplaces[0]] = digit
     return values
 
+# use eliminate, only choice, and naked twins to solve sudoku using constrain propagation.
 def reduce_puzzle(values):
     solved_values = [box for box in values.keys() if len(values[box]) == 1]
     stalled = False

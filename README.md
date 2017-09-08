@@ -9,6 +9,7 @@ A: we firstly find two grids with the same two possible answers within the same 
 # Question 2 (Diagonal Sudoku)
 Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
 A: Since each digits from 0 to 9 can only appear once on each diagonal, we use this rule as a constraint to reduce possible answers.
+   After adding two diagonals in the unitlist as constrains, we then do the constrain propagation as before, but now we have 27+2 = 29 units.
 
 ### Install
 
